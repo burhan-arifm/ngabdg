@@ -1,0 +1,13 @@
+language: ruby
+sudo: enabled
+rvm: 2.4.2
+before_install:
+  - sudo apt-get upgrade
+  - sudo apt-get update -q
+  - gem update --system
+  - gem -version
+install:
+  - bundle install --jobs=3 --retry=3
+script:
+  - rake db:migrate
+  - bundle exec rspec -fd
