@@ -2,12 +2,19 @@ language: ruby
 sudo: enabled
 rvm: 2.4.2
 before_install:
-  - sudo apt-get upgrade
-  - sudo apt-get update -q
-  - gem update --system
-  - gem -version
+- sudo apt-get upgrade
+- sudo apt-get update -q
+- gem update --system
+- gem -version
 install:
-  - bundle install --jobs=3 --retry=3
+- bundle install --jobs=3 --retry=3
 script:
-  - rake db:migrate
-  - bundle exec rspec -fd
+- rake db:migrate
+- bundle exec rspec -fd
+deploy:
+  provider: heroku
+  api_key:
+    secure: xs4cFMBDSh/WxEjc8h/albDmVjdsiH+eFgoNgT/m4vyuLMbNYqggA06PRdeZNJwW+MkYT1FmzrR7yTFrykpMBK0fnqbjTH09YbysC2UYRPyKQsZ7NNoKFBQFNr+Ho+fsr7P8RSycPE50dKa9719RHuDK3NVmqG33uh34w8ExGXticD9EDjsWL1sD02f0L6nC5bWY04HYmZBgDgcyDEsIaO65YIUnDOPAxqLrggDXZUrX4dC6/mfW+vc55Bn43iKHKp4IxxogT2KatxIOOmpxhc1pvEdWvU+Y+aiXq1ozwqMd0fVYTxUqrGiEu11rfxVq/fpXESvx0m24CQejeDrCFZ0gZb10syZT8anOvip4jNOHz2aeA6rxTD2xl+KdjD3T6QTAEy7zlAbQWkXMyuyb3XxetDkRswBrayf6kfPTjBhvyhFrBce7BOzbFm2PFm1yrAh4pfXbdYgED5GF2eaaUavFm6RADADTbk8vyU6T2rYwne0etuLBN6fezY5XM7oieDpwMIkdwpms6hFLAnzlT8eNo3BN8Cx96x8Zg027apWAKre493WkYJ6ok4OAm2jOVNz2SliTzzklOdOi8cwiYWU5q01EhbHe735X1IXqDDEuG4vYeFEy94Z/V+9gs7Z5HffsZULcADBYcrrjgeuXVZOz0q4qiCG/37+siGjhC8w=
+  app: ngabdg
+  on:
+    repo: burhan-arifm/ngabdg
