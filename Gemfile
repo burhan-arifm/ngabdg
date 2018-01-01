@@ -35,7 +35,7 @@ group :development, :test do
   # Use figaro to set environment variables
   gem 'figaro'
   # Use faker as dummy data generator
-  gem 'faker'
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
 group :development do
