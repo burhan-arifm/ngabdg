@@ -8,6 +8,6 @@ RSpec.describe Lewat, type: :model do
   
   # Validation test
   # ensure column pulang are present before saving
-  it { should validate_presence_of(:pulang) }
+  it { should validate_inclusion_of(:pulang).in_array([true, false]) }
   it { should validate_presence_of(:urutan) }
 end

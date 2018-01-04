@@ -34,7 +34,7 @@ class LewatsController < ApplicationController
 
   def lewat_params
     # whitelist parameters
-    params.permit(:angkutan.id, :pulang, :road.id, :urutan)
+    params.permit(:angkutan_id, :pulang, :road_id, :urutan)
   end
 
   def set_lewat

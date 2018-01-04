@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'Tipe Angkutan API', type: :request do
+RSpec.describe 'Road API', type: :request do
   # Inisialisasi data pengujian
   let!(:roads) { create_list(:road, 10) }
-  let(:road_id) { road.first.id }
+  let(:road_id) { roads.first.id }
 
   # Kumpulan pengujian untuk fungsi GET /roads
   describe 'fungsi GET /roads' do
@@ -57,7 +57,7 @@ RSpec.describe 'Tipe Angkutan API', type: :request do
       before { post '/roads', params: valid_attributes }
 
       it 'menyimpan data yang dimasukan' do
-        expect(json['tipe']).to eq('Angkot')
+        expect(json['nama']).to eq('Jl. Nasional III')
       end
 
       it 'mengembalikan kode status 201' do

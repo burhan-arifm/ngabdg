@@ -4,6 +4,6 @@ class Lewat < ApplicationRecord
   belongs_to :road
 
   # Validation
-  validates_presence_of :pulang
+  validates :pulang,  :inclusion => { :in => [true, false] }   
   validates_presence_of :urutan
 end

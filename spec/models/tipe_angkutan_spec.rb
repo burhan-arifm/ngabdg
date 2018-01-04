@@ -9,5 +9,5 @@ RSpec.describe TipeAngkutan, type: :model do
   # ensure columns (nama, lat_awal, lat_akhir, long_awal, long_akhir, searah) are present before saving
   it { should validate_presence_of(:tipe) }
   it { should validate_presence_of(:ongkos) }
-  it { should validate_presence_of(:flat) }
+  it { should validate_inclusion_of(:flat).in_array([true, false]) }
 end

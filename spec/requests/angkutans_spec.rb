@@ -59,7 +59,7 @@ RSpec.describe 'Angkutan API', type: :request do
       before { post '/angkutans', params: valid_attributes }
 
       it 'menyimpan data yang dimasukan' do
-        expect(json['tipe']).to eq('Angkot')
+        expect(json['plat_nomor']).to eq('D4984MA')
       end
 
       it 'mengembalikan kode status 201' do

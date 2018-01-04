@@ -5,10 +5,10 @@ RSpec.describe 'Lewat API', type: :request do
   let!(:tipe_angkutan) { create(:tipe_angkutan, flat: false) }
   let!(:angkutan) { create(:angkutan, tipe_angkutan_id: tipe_angkutan.id) }
   let!(:road) { create(:road, searah: false) }
-  let!(:lewats) { create_list(:lewats, 10, angkutan_id: angkutan.id, road_id: road.id) }
+  let!(:lewats) { create_list(:lewat, 10, angkutan_id: angkutan.id, road_id: road.id) }
   let(:angkutan_id) { angkutan.id }
   let(:road_id) { road.id }
-  let(:lewat_id) { lewat.first.id }
+  let(:lewat_id) { lewats.first.id }
 
   # Kumpulan pengujian untuk fungsi GET /lewats
   describe 'fungsi GET /lewats' do
@@ -56,13 +56,13 @@ RSpec.describe 'Lewat API', type: :request do
   # Kumpulan pengujian untuk fungsi POST /lewat
   describe 'fungsi POST /lewat' do
     # Data pengujian yang valid
-    let(:valid_attributes) { { angkutan_id: angkutan_id, pulang: true, road_id: road_id } }
+    let(:valid_attributes) { { angkutan_id: angkutan_id, pulang: true, road_id: road_id, urutan: 10 } }
 
     context 'ketika permohonan diterima' do
       before { post '/lewats', params: valid_attributes }
 
       it 'menyimpan data yang dimasukan' do
-        expect(json['tipe']).to eq('Angkot')
+        expect(json['pulang']).to eq(true)
       end
 
       it 'mengembalikan kode status 201' do
@@ -71,14 +71,14 @@ RSpec.describe 'Lewat API', type: :request do
     end
 
     context 'ketika permohonan ditolak' do
-      before { post '/lewats', params: { angkutan_id: angkutan_id, road_id: road_id } }
+      before { post '/lewats', params: { angkutan_id: angkutan_id, pulang: false, road_id: road_id } }
 
       it 'mengembalikan kode status 422' do
         expect(response).to have_http_status(422)
       end
 
       it 'menampilkan pesan kegagalan validasi' do
-        expect(response.body).to match(/Validation failed: Pulang can't be blank/)
+        expect(response.body).to match(/Validation failed: Urutan can't be blank/)
       end
     end
   end

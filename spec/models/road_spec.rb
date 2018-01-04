@@ -14,5 +14,5 @@ RSpec.describe Road, type: :model do
   it { should validate_presence_of(:long_awal) }
   it { should validate_presence_of(:lat_akhir) }
   it { should validate_presence_of(:long_akhir) }
-  it { should validate_presence_of(:searah) }
+  it { should validate_inclusion_of(:searah).in_array([true, false]) }
 end

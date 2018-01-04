@@ -3,5 +3,6 @@ class TipeAngkutan < ApplicationRecord
   has_many :angkutans, dependent: :destroy
 
   # Validations
-  validates_presence_of :tipe, :ongkos, :flat
+  validates_presence_of :tipe, :ongkos
+  validates :flat,  :inclusion => { :in => [true, false] }
 end

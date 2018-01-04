@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Tipe Angkutan API', type: :request do
   # Inisialisasi data pengujian
   let!(:tipe_angkutans) { create_list(:tipe_angkutan, 10) }
-  let(:tipe_angkutan_id) { tipe_angkutan.first.id }
+  let(:tipe_angkutan_id) { tipe_angkutans.first.id }
 
   # Kumpulan pengujian untuk fungsi GET /tipe_angkutans
   describe 'fungsi GET /tipe_angkutans' do
@@ -43,7 +43,7 @@ RSpec.describe 'Tipe Angkutan API', type: :request do
       end
 
       it 'menampilkan pesan data tidak ditemukan' do
-        expect(response.body).to match(/Couldn't find Tipe Angkutan/)
+        expect(response.body).to match(/Couldn't find TipeAngkutan with 'id'=#{tipe_angkutan_id}/)
       end
     end
   end
